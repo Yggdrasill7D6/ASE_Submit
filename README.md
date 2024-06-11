@@ -1,4 +1,6 @@
 # ASE_Submit
+Automatically assess the quality of the questions in developer chatrooms by detecting missing information (ETD and PS)
+
 ## 1 Dataset Summary
 In folder "data/", files should be: 
 (1) Pattern_Catalog_66.xlsx: Pattern Catelog of 66 lexico-syntactic patterns based on 1000 questions in the pattern discovery set
@@ -17,5 +19,7 @@ In folder "code/", files should be:
 (5) OpenAI_Detect.ipynb: Implementation for GPT-3.5 Turbo and GPT_4o, requirements: OpenAI package installed, detail instructions included in the jupytern notebook
 
 ## 3 Experimental Results Summary
-In folder "experiment/", files should be:
-(1) 
+In folder "experiment/", subfolders should be:
+(1) svm: validation results as shown in Table 4 in the paper
+(2) pretrained: validation results as shown in Table 4 in the paper
+(3) OpenAI: validation results as shown in Table 5 and 7 in the paper
