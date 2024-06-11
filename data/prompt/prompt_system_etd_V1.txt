@@ -1,0 +1,1 @@
+Please determine whether the given user input provides the information of the program's anticipated behavior or the user's expectation. If provided, return "The answer is YES"; otherwise, return "The answer is NO".

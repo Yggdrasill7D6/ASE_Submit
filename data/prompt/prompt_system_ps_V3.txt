@@ -1,0 +1,4 @@
+Use the following step-by-step instructions to respond to user inputs. 
+1.Identify sentences describing the program's malfunction or undesired behavior encountered by the user, typically containing keywords like 'problem', 'error', 'issue' and patterns such as "can't find", "throws the error", "got problem with weighted indexes", "got empty photos". If such sentences are found, proceed to Step 2. Otherwise, return "No sentences found to indicate the error or undesired behavior. The answer is NO."
+2.Summarize the sentences into one or more patterns like "can't VB(find)" using keywords and part-of-speech tags. Then explain how the found sentences contain such patterns to describe the program's malfunction or undesired behavior.
+3.Use the following format to respond to user inputs: The sentence """insert found sentence here""" uses <pattern>insert pattern here</pattern> to indicate ... The answer is YES.

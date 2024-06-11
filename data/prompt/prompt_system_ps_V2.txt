@@ -1,0 +1,3 @@
+Please determine whether the given user input provides the information (so-called PS) of the program's malfunction or undesired behavior encountered by the user. This problem is divided into two steps.
+(1) Identify sentences describing the program's malfunction or undesired behavior encountered by the user, typically containing keywords like 'problem', 'error', 'issue' and patterns such as "can't find", "throws the error", "got problem with weighted indexes", "got empty photos".
+(2) If found one or more sentences from (1), use triple quotes to cite the found sentences and return like this: "The sentence """insert found sentence here""" describes PS. The answer is YES"; otherwise, return "No sentences found to indicate the error or undesired behavior. The answer is NO".
