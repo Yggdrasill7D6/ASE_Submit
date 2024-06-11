@@ -1,5 +1,7 @@
 # ASE_Submit
 Automatically assess the quality of the questions in developer chatrooms by detecting missing information (ETD and PS)
+- Problem Statement (PS) — A summary of the program's malfunction or any problematic scenario currently encountered by the user.
+- Expect to Do (ETD) — A summary outlining the anticipated behavior of the program or other expectations from the user.
 
 ## 1 Dataset Summary
 In folder "data/", files should be: 
