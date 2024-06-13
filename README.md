@@ -6,26 +6,22 @@ Goal: Automatically assess the quality of the questions in developer chatrooms b
 - Expect to Do (ETD) — A summary outlining the anticipated behavior of the program or other expectations from the user.
 
 ## 1 File Structure
-In folder "data/": 
+In folder "data/", important files are: 
 - Pattern_Catalog_66.xlsx: Pattern Catelog of 66 lexico-syntactic patterns based on 1000 questions in the pattern discovery set
-- PatternDiscovery_1000.csv:  Pattern discovery set of 1,000 questions, artifacts from open coding procedure, including maunally identified sentences containing ETD/PS, pattern_code of summarized patterns, labels
+- PatternDiscovery_1000.csv: Pattern discovery set of 1,000 questions, artifacts from open coding procedure, including maunally identified sentences containing ETD/PS, pattern_code of summarized patterns, labels
 - Validation_1000.csv: Validation set of 1,000 questions, validation results from Heuristic approach, including predicted patterns and corresponding predicted label
-- Pattern_code_list.csv (pattern code from Pattern Catalog) is a utility file for Heuristic approach
-- issue.csv (1000 questions from validation set) is a utility file for Heuristic approach and LLM
-- tag_dict.csv is a utility file for preprocessing, part of N-gram extraction process, used by SVM approach
-- sub-folder prompt: contains required system message and example for the CoT prompt used by GPT models
 
 In folder "code/":
 - Hueristic_NLP.zip: Implementation for the heuristic approach
-- SVM.ipynb: Implementation for the SVM approach, requirements: scikit-learn package installed, detail instructions included in the jupyter notebook
-- Pretrained_Detection.ipynb: Implementation for the pre-trained models, requirements: tensorflow2 with GPU, detail instructions included in the jupyter notebook
-- Pretrained_withPattern_Detection.ipynb: Implementation for the pre-trained models with pattern features added, detail instructions included in the jupyter notebook
-- OpenAI_Detect.ipynb: Implementation for GPT-3.5 Turbo and GPT-4o, requirements: OpenAI package installed, detail instructions included in the jupyter notebook
+- SVM.ipynb: Implementation for the SVM approach
+- Pretrained_Detection.ipynb: Implementation for the pre-trained models
+- Pretrained_withPattern_Detection.ipynb: Implementation for the pre-trained models with pattern features added
+- OpenAI_Detect.ipynb: Implementation for CoT Prompting on GPT-3.5 Turbo and GPT-4o
 
-In folder "experiment/":
-- svm: validation results as shown in Table 4 in the paper
-- pretrained: validation results as shown in Table 4 in the paper
-- OpenAI: validation results as shown in Table 5 and 7 in the paper
+In folder "experiment/", three sub-folders are:
+- svm: Validation results from the SVM approach (Table 4 in the paper)
+- pretrained: Validation results from the pre-trained models (Table 4 in the paper)
+- OpenAI: Validation results from the LLMs (Table 5 and 7 in the paper)
 
 ## 2 Dataset Summary
 A sample set of approximately 5,000 questions extracted from over 21K issue-solution pairs published by Shi et al., covering eight active domains on Gitter: front end framework, mobile, data science, DevOps, blockchain platform, collaboration, web app, and programming language. A dataset of 2,000 questions were curated after preprocessing (e.g., noise filtering) and then two subsets were created from these:
@@ -40,9 +36,37 @@ Four automated approaches were designed and evaluated to detect missing ETD and/
 - Prompting: Employ Chain-of-Thought (CoT) prompting in combination with two state-of-the-art LLMs, GPT-3.5 Turbo and GPT-4o.
 
 ## 4 Replication Process
-To replicate Heuristic approach:
-- Environment requirements: Stanford CoreNLP toolkit, configured with Maven setup in Java within the IntelliJ IDEA platform
-- Input Files: "issue.csv" and "Pattern_code_list.csv" in folder "data/"
-- Steps to reproduce: Unzip the file "Hueristic_NLP.zip" and import this project into IntelliJ
+To replicate the Heuristic approach:
+- Requirements: Java and IntelliJ IDEA Community Edition installed
+- Input Files: "issue.csv", "tag_dict.csv" and "Pattern_code_list.csv" in "data/"
+- Steps to reproduce:
+  - Unzip the file "Hueristic_NLP.zip" in "code/"
+  - Import this project into IntelliJ
+  - Specify the output path in line 30 for variable "outputPath"
+  - Run the project
+  - Results saved in "../data/Validation_1000.csv" (columns "predicted_PS" and "predicted_ETD" are generated patterns, columns "y_PS" and "y_ETD" are the ground truth, columns "y'_PS" and "y'_ETD" are the predicted labels)
 
-To replicate SVM approach:
+To replicate the SVM approach:
+- Requirements: Anaconda intalled (make sure jupyter notebook or jupyterLab installed), Packages (scikit-learn, pandas, numpy) installed
+- Input Files: "Validation_1000.csv" in folder "data/"
+- Steps to reproduce:
+  - Launch jupyter notebook or jupyterLab and then run "SVM.ipynb" in "code/"
+  - Run all the cells sequentially
+  - The dataset of 10-fold cross-validation is created in "../data/cross_validate_10/"
+  - All results saved in "../experiment/svm/"
+ 
+To replicate the Pre-trained (with/without pattern features) models:
+- Requirements: Anaconda intalled (make sure jupyter notebook or jupyterLab installed), Packages (tensorflow2 with GPU, scikit-learn, pandas, numpy) installed
+- Input Files: The dataset of 10-fold cross-validation in "../data/cross_validate_10/" (created in the SVM approach)
+- Steps to reproduce:
+  - Launch jupyter notebook or jupyterLab and then run "Pretrained_Detection.ipynb" or "Pretrained_withPattern_Detection.ipynb" in "code/"
+  - Run all the cells sequentially
+  - All results saved in "../experiment/pretrained/"
+
+To replicate the CoT Prompting on LLMs:
+- Requirements: Anaconda intalled (make sure jupyter notebook or jupyterLab installed), Packages (OpenAI, scikit-learn, pandas, numpy) installed, an account created in OpenAI platform and get the OpenAI API key
+- Input Files: "issue.csv" in "data/", different versions of system message in "data/prompt/" and examples in "data/prompt/example"
+- Steps to reproduce:
+  - Launch jupyter notebook or jupyterLab and then run "OpenAI_Detect.ipynb" in "code/"
+  - Run all the cells sequentially
+  - All results saved in "../experiment/OpenAI/"
