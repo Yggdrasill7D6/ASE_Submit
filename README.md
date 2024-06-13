@@ -9,7 +9,7 @@ Goal: Automatically assess the quality of the questions in developer chatrooms b
 In folder "data/", important files are: 
 - Pattern_Catalog_66.xlsx: Pattern Catelog of 66 lexico-syntactic patterns based on 1000 questions in the pattern discovery set
 - PatternDiscovery_1000.csv: Pattern discovery set of 1,000 questions, artifacts from open coding procedure, including maunally identified sentences containing ETD/PS, pattern_code of summarized patterns, labels
-- Validation_1000.csv: Validation set of 1,000 questions, validation results from Heuristic approach, including predicted patterns and corresponding predicted label
+- Validation_1000.csv: Validation set of 1,000 questions, validation results from Heuristic approach, including predicted patterns and corresponding predicted labels
 
 In folder "code/":
 - Hueristic_NLP.zip: Implementation for the heuristic approach
