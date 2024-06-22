@@ -23,6 +23,8 @@ In folder "experiment/", three sub-folders are:
 - pretrained: Validation results from the pre-trained models (Table 4 in the paper)
 - OpenAI: Validation results from the LLMs (Table 5 and 7 in the paper)
 
+The additional experiments and corresponding results are presented in "ASE2024_appendix.pdf" located inside the "appendix" folder.
+
 ## 2 Dataset Summary
 A sample set of approximately 5,000 questions extracted from over 21K issue-solution pairs published by Shi et al., covering eight active domains on Gitter: front end framework, mobile, data science, DevOps, blockchain platform, collaboration, web app, and programming language. A dataset of 2,000 questions were curated after preprocessing (e.g., noise filtering) and then two subsets were created from these:
 - Pattern discovery set: 1,000 questions were used for lexico-syntactic pattern discovery for ETD and PS.
